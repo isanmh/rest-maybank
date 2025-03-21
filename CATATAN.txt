@@ -1,0 +1,64 @@
+Extensi Laravel :
+- Laravel Extension Pack
+- php intelephense
+- php intelesense
+
+installasi :
+composer create-project laravel/laravel:^10.0 nama_project
+
+jalann :
+php artisan serve
+
+simpan di www :
+rest-app.test
+
+untuk route itu ada di web.php :
+http://127.0.0.1:8000/
+
+untuk route api itu ada di api.php :
+http://127.0.0.1:8000/api/test-api
+
+
+cara membuat controller :
+php artisan make:controller NamaController
+
+cara membuat model :
+php artisan make:model NamaModel
+
+cara membuat migration :
+php artisan make:migration create_nama_table
+
+cara membuat controller, model, migration :
+php artisan make:model Product -mc
+php artisan make:model Product -m -c
+
+model :
+setting apa attribute yang bisa di isi
+database/migrations/2022_02_23_000000_create_products_table.php
+
+cara migration :
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate:refresh
+php artisan migrate:fresh
+php artisan migrate:reset
+
+php artisan migrate:refresh
+
+php artisan make:model Category -m
+
+cara membuat factory :
+php artisan make:factory ProductFactory
+
+cara membuat seeder :
+php artisan make:seeder ProductSeeder
+
+cara jalanin :
+php artisan db:seed --class=ProductSeeder
+
+alur framework laravel :
+- route -> controller -> model -> migration -> factory -> seeder
+
+
+
+
