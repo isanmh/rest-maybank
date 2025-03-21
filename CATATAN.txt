@@ -59,6 +59,7 @@ php artisan db:seed --class=ProductSeeder
 alur framework laravel :
 - route -> controller -> model -> migration -> factory -> seeder
 
-
+cara installasi Sanctum :
+php artisan make:controller AuthController
 
 

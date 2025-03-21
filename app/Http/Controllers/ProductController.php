@@ -113,4 +113,30 @@ class ProductController extends Controller
             return response()->json($data, Response::HTTP_NOT_FOUND);
         }
     }
+
+    // delete
+    public function destroy($id)
+    {
+        $product = Product::find($id);
+
+        if ($product) {
+            // jika ada gambar lama
+            if ($product->image) {
+                $target = 'assets/images/';
+                unlink($target . $product->image);
+            }
+            $product->delete();
+            $data = [
+                'status' => Response::HTTP_OK,
+                'message' => 'Data produk berhasil dihapus',
+            ];
+            return response()->json($data, Response::HTTP_OK);
+        } else {
+            $data = [
+                'status' => Response::HTTP_NOT_FOUND,
+                'message' => 'Data produk tidak ditemukan',
+            ];
+            return response()->json($data, Response::HTTP_NOT_FOUND);
+        }
+    }
 }
