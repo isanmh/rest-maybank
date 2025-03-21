@@ -88,7 +88,7 @@ class ProductController extends Controller
             $input = $request->all();
 
             if ($image = $request->file('image')) {
-                $target = 'assets/images';
+                $target = 'assets/images/';
                 // jika data image sebelumnya ada
                 unlink($target . $product->image);
                 $img_name = date('YmdHis') . "." . $image->getClientOriginalExtension();
