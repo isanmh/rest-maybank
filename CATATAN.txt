@@ -62,4 +62,44 @@ alur framework laravel :
 cara installasi Sanctum :
 php artisan make:controller AuthController
 
+Cara installasi JWT :
+1. composer require tymon/jwt-auth
+2. php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+3. php artisan jwt:secret
 
+4. tambahkan
+// config/app.php
+'providers' => [
+    ...
+    Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+],
+'guards' => [
+    'api' => [
+        'driver' => 'jwt',
+        'provider' => 'users',
+    ],
+],
+
+optional ganti default guard di config/auth.php
+'defaults' => [
+    'guard' => 'api',
+    'passwords' => 'users',
+],
+
+// jwt config model Users: App\Models\User
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+class User extends Authenticatable implements JWTSubject
+public function getJWTIdentifier()
+{
+    return $this->getKey();
+}
+
+public function getJWTCustomClaims()
+{
+    return [];
+}
+
+
+buat satu controller ::
+php artisan make:controller AuthJwtController

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthJwtController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,10 +36,14 @@ Route::post('users/login', [AuthController::class, 'login']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('users/logout', [AuthController::class, 'logout']);
     Route::get('user', [AuthController::class, 'user']);
-    Route::get('products', [ProductController::class, 'index']);
     Route::get('products/{id}', [ProductController::class, 'show']);
 });
+Route::get('products', [ProductController::class, 'index']);
 
 Route::post('products', [ProductController::class, 'store']);
 Route::put('products/{id}', [ProductController::class, 'update']);
 Route::delete('products/{id}', [ProductController::class, 'destroy']);
+
+// jwt auth
+Route::post('jwt/register', [AuthJwtController::class, 'register']);
+Route::post('jwt/login', [AuthJwtController::class, 'login']);
