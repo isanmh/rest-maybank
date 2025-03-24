@@ -44,6 +44,9 @@ class AuthJwtController extends Controller
             'password' => $request['password']
         ]);
 
+        // set expired token
+        JWTAuth::factory()->setTTL(60);
+
         // cek jika token kosong
         if (!empty($token)) {
             return response()->json([
