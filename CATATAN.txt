@@ -109,8 +109,34 @@ bit.ly/RestMayBank
 custom middleware :
 php artisan make:middleware CustomHeader
 
-setting kernel :
+setting kernel.php :
 protected $routeMiddleware = [
     ...
     'custom-header' => \App\Http\Middleware\CustomHeader::class,
 ];
+
+
+cara installasi Swagger :
+1. composer require darkaonline/l5-swagger
+2. php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
+
+config/app.php
+L5Swagger\L5SwaggerServiceProvider::class,
+
+AppServiceProvider.php > register
+$this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
+
+
+3. buat sekema :
+http://127.0.0.1:8000/api/documentation
+- controller.php
+/**
+ * @OA\Info(
+ *     version="1.0",
+ *     title="Example for response examples value"
+ * )
+ */
+- di setiap fungsi (ProductController.php):
+https://github.com/isanmh/swagger-anotations
+
+4. php artisan l5-swagger:generate

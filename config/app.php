@@ -170,6 +170,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         // jwt laravel
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        // swagger
+        L5Swagger\L5SwaggerServiceProvider::class,
     ])->toArray(),
 
     /*
