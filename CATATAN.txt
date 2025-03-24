@@ -103,3 +103,14 @@ public function getJWTCustomClaims()
 
 buat satu controller ::
 php artisan make:controller AuthJwtController
+
+bit.ly/RestMayBank
+
+custom middleware :
+php artisan make:middleware CustomHeader
+
+setting kernel :
+protected $routeMiddleware = [
+    ...
+    'custom-header' => \App\Http\Middleware\CustomHeader::class,
+];

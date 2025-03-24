@@ -25,9 +25,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('test-api', function () {
     return response()->json([
         'status' => 200,
-        'message' => 'Hai, ini adalah response dari API $name dan $job',
+        'message' => 'Data rahasia mr. daud',
+        'data' => ['nama' => 'Mr. Daud', 'umur' => 25],
     ]);
-})->middleware('auth:sanctum');
+})->middleware(['custom-header']);
 
 Route::post('users/register', [AuthController::class, 'register']);
 Route::post('users/login', [AuthController::class, 'login']);
@@ -47,3 +48,9 @@ Route::delete('products/{id}', [ProductController::class, 'destroy']);
 // jwt auth
 Route::post('jwt/register', [AuthJwtController::class, 'register']);
 Route::post('jwt/login', [AuthJwtController::class, 'login']);
+
+Route::middleware(['auth:api'])->group(function () {
+    Route::get('jwt/profile', [AuthJwtController::class, 'profile']);
+    Route::post('jwt/logout', [AuthJwtController::class, 'logout']);
+    Route::post('jwt/refresh', [AuthJwtController::class, 'refresh']);
+});

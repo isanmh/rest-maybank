@@ -58,4 +58,34 @@ class AuthJwtController extends Controller
             'message' => 'Invalid credentials',
         ], Response::HTTP_UNAUTHORIZED);
     }
+
+    public function profile()
+    {
+        return response()->json([
+            'status' => Response::HTTP_OK,
+            'message' => 'User profile',
+            'data' => auth()->user()
+        ], Response::HTTP_OK);
+    }
+
+    public function logout()
+    {
+        JWTAuth::invalidate(JWTAuth::getToken());
+        // auth()->logout();
+        return response()->json([
+            'status' => Response::HTTP_OK,
+            'message' => 'User berhasil logout',
+        ], Response::HTTP_OK);
+    }
+
+    public function refresh()
+    {
+        $newToken = JWTAuth::refresh(JWTAuth::getToken());
+        // $newToken = auth()->refresh();
+        return response()->json([
+            'status' => Response::HTTP_OK,
+            'message' => 'New token generated',
+            'token' => $newToken,
+        ], Response::HTTP_OK);
+    }
 }

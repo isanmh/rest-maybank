@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // varible global untuk custom header
+    public const Headers = [
+        'X-Value' => 'MR. DAUD',
+        'X-DATE' => '2025-03-24',
+    ];
+
     public function register(Request $request)
     {
         $input = $request->validate([
